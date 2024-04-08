@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui/dist/css/styles.css" />
+
+    <!-- And -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/5e6d16379d.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- Start nav bar -->
+    <div class="bg-backgroundSecondary navbar rounded-lg fixed z-50 top-0 ">
+        <div class='container m-auto flex justify-between items-center'>
+            <div class="navbar-start cursor-pointer">
+                <a href="/">
+                    <span class=" text-lg hover:bg-zinc-700 px-3 py-1.5 rounded-lg">Fake Blog</span>
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="flex gap-3 cursor-pointer">
+                    <a href="/pages/profilePosts.html">
+                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" class="rounded-full w-12 h-12 mr-4"
+                            alt="avatar" />
+                    </a>
+                    <div class='flex items-center gap-3'>
+                        <a href="/pages/login.html" class="btn btn-outline-primary">Login</a>
+                        <a href="/pages/register.html"
+                            class="border-2 border-zinc-600 py-1.5 px-3  rounded-xl hover:bg-zinc-700">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End nav bar -->
+
+    <div class=" flex justify-center my-24">
+        <div class="bg-backgroundSecondary rounded-lg shadow-lg max-w-xl w-full p-8">
+            <!-- Post Header -->
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/50" alt="Profile Picture" class="rounded-full w-12 h-12 mr-4" />
+                <div class=''>
+                    <h2 class="font-semibold text-lg">John Doe</h2>
+                    <p class="text-gray-600">March 26 at 10:00 AM</p>
+                </div>
+            </div>
+            <!-- Post Content -->
+            <p class="text-sm mt-4">
+                Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️
+            </p>
+            <!-- Post Image -->
+            <img src="https://via.placeholder.com/500" alt="Coffee" class="mt-4 rounded-lg" />
+            <!-- Post Actions -->
+            <hr />
+            <div class="flex flex-col items-start mt-5 border-y border-zinc-400 pt-1 pb-2">
+                <!-- You can add like, comment, and share buttons here -->
+                <span class='pt-2 '> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span class='text-gray-600'>(5) comments</span> </span>
+            </div>
+    
+            <div class=''>
+                <div class=' border-b-2 border-zinc-400 py-5'>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50" alt="Profile Picture" class="rounded-full w-10 h-10 mr-4" />
+                        <div class=''>
+                            <h2 class="font-semibold text-lg">John Doe</h2>
+                        </div>
+                    </div>
+                    <!-- Post Content -->
+                    <p class="text-sm mt-2">
+                        Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee
+                    </p>
+                </div>
+            </div>
+    
+            <div class='flex items-center justify-between gap-5 mt-5'>
+                <input class="w-full outline-none py-1.5 rounded-lg pl-5 bg-first-color border-2 border-zinc-500 placeholder:text-zinc-500" placeholder="Add your comment" />
+                <button class='btn-primary py-2 px-3 rounded-lg'>Add</button>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
