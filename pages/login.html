@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui/dist/css/styles.css" />
 
+    <script src="/node_modules/axios/dist/axios.min.js"></script>
+
     <!-- And -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/5e6d16379d.js" crossorigin="anonymous"></script>
@@ -21,6 +23,7 @@
                 <div class="form-field">
                     <label class="form-label">User name</label>
                     <input 
+                        id="username-input"
                         placeholder="Type here" 
                         type="text" 
                         class="input max-w-full" />
@@ -29,6 +32,7 @@
                     <label class="form-label">Password</label>
                     <div class="form-control">
                         <input 
+                            id="password-input"
                             placeholder="Type here" 
                             type="password" 
                             class="input max-w-full" />
@@ -37,6 +41,7 @@
                 <div class="form-field pt-5">
                     <div class="form-control justify-between">
                         <button 
+                            onclick="loginBtnClicked()"
                             type="button" 
                             class="btn btn-primary w-full">
                             Sign in
@@ -59,7 +64,7 @@
         </div>
     </section>
     
-    <script src="/script.js"></script>
+    <script src="/javascript//auth.js"></script>
 
 </body>
 </html>
