@@ -23,11 +23,11 @@
             </div>
             <div class="navbar-end">
                 <div class="flex gap-3 cursor-pointer">
-                    <a href="/pages/profilePosts.html">
+                    <a href="/pages/profilePosts.html" id="profile-image">
                         <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" class="rounded-full w-12 h-12 mr-4"
                             alt="avatar" />
                     </a>
-                    <div class='flex items-center gap-3'>
+                    <div class='flex items-center gap-3' id="auth-div">
                         <a href="/pages/login.html" class="btn btn-outline-primary">Login</a>
                         <a href="/pages/register.html"
                             class="border-2 border-zinc-600 py-1.5 px-3  rounded-xl hover:bg-border">Register</a>
@@ -228,8 +228,9 @@
     </div>
 
     <!-- End home page -->
-
-    <script src="/javascript/script.js"></script>
+    
+    <script src="./javascript/mainLogic.js"></script>
+    <script src="./javascript/homePage.js"></script>
 
 </body>
 

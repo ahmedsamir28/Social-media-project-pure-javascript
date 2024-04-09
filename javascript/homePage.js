@@ -1,3 +1,4 @@
+
 const baseUrl = 'https://tarmeezacademy.com/api/v1'
 const posts = document.getElementById("posts")
 
@@ -96,7 +97,6 @@ const getDataUsers = () => {
         .then(res => res.json())
         .then(res => {
             const response = res.data;
-console.log(response);
             // Render each post
             response.slice(0,9).forEach(post => {
                 getUsers(post);

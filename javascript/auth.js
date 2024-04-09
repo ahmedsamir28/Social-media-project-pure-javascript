@@ -16,9 +16,15 @@ const loginBtnClicked = () => {
     // Send the POST request to the login API
     const url = `${baseUrl}/login`;
     axios.post(url, params)
-        .then((response) => {
-            console.log(response);
+        .then((res) => {
+            console.log(res.data);
+             // Store the token and user in local storage
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+
         }).catch((error) => {
             console.log(error.response.data); 
         })
 }
+
+
