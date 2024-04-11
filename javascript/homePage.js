@@ -1,5 +1,4 @@
 
-const baseUrl = 'https://tarmeezacademy.com/api/v1'
 const posts = document.getElementById("posts")
 
 let currentPage = 1
@@ -98,7 +97,7 @@ const getDataUsers = () => {
         .then(res => {
             const response = res.data;
             // Render each post
-            response.slice(0,9).forEach(post => {
+            response.slice(0, 9).forEach(post => {
                 getUsers(post);
             });
         })
@@ -127,3 +126,38 @@ const getDataUsers = () => {
 }
 
 getDataUsers()
+setupUi()
+
+const leftSideBarInformation = () => {
+    const leftSideBar = document.getElementById("left-side-bar")
+
+    const user = getCurrentUser()
+    console.log(user);
+
+    let content = `
+        <div class='rounded-t-lg bg-border h-28 relative'>
+                <img src=${user.profile_image} alt="Profile Picture"
+                    class="absolute left-24 top-20 rounded-full w-16 h-16 p-1 bg-zinc-200" />
+            </div>
+            <h6 class='capitalize text-md text-center mt-10 font-light'>${user.username}</h6>
+            <h6 class='text-md text-center mt-1.5 font-thin '>${user.email}</h6>
+            <div class='flex flex-col capitalize items-center mt-3 border-t border-gray-500 pt-2 text-md'>
+                posts
+                <span class='text-sm  font-light'>${user.posts_count}</span>
+            </div>
+            <div class='flex flex-col capitalize items-center mt-3  border-t border-gray-500 pt-2 text-md'>
+                comments
+                <span class='text-sm font-light'>${user.comments_count}</span>
+            </div>
+            <div
+                class='capitalize text-center my-3 text-blue-600 border-t border-gray-500 py-3 text-sm cursor-pointer'>
+                <a href="/pages/profilePosts.html"> view profile </a>
+
+        </div>
+`;
+
+    leftSideBar.innerHTML += content;
+
+}
+
+leftSideBarInformation()

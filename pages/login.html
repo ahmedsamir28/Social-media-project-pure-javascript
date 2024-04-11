@@ -10,9 +10,26 @@
     <!-- And -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/5e6d16379d.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Define transition for the alert */
+        .alert {
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0; /* Initially hidden */
+        }
+    
+        /* Show the alert when it becomes visible */
+        .alert.show {
+            opacity: 1;
+        }
+    </style>
+
     <title>Document</title>
 </head>
 <body>
+
+    <div class="fixed z-50 w-96 top-24 right-10 " id="show-alert"> </div>
+    
     <section class="relative flex flex-wrap lg:h-screen lg:items-center">
         <div class="mx-auto flex w-full max-w-sm flex-col gap-6">
             <div class="flex flex-col items-center">
