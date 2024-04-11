@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui/dist/css/styles.css" />
+
+    <script src="/node_modules/axios/dist/axios.min.js"></script>
     <!-- And -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/5e6d16379d.js" crossorigin="anonymous"></script>
@@ -112,12 +114,12 @@
                         <label for="modal-1" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
                         <h2 class="text-xl capitalize">create a new post</h2>
                         <div class='flex flex-col gap-4'>
-                            <input class="input max-w-full " placeholder="The Title!" />
-                            <textarea class="textarea max-w-full" placeholder="Welcome!"> </textarea></>
-                            <input type="file" class=" max-w-full input-file" />
+                            <input id="post-title-input" class="input max-w-full" placeholder="The Title!" />
+                            <textarea id="post-body-input" class="textarea max-w-full" placeholder="Welcome!"> </textarea></>
+                            <input id="post-image-input" type="file" class=" max-w-full input-file" />
                         </div>
                         <div class="flex gap-3">
-                            <button class="btn btn-primary btn-block">Add Post</button>
+                            <button onclick="createNewPostClicked()" class="btn btn-primary btn-block">Add Post</button>
                             <label class="btn btn-block" for="modal-1">Cancel</label>
                         </div>
                     </div>
