@@ -1,3 +1,45 @@
+//Handle the click event of the register button
+const registerBtnClicked = () => {
+    // Get the input values from the register form
+    const registerImage = document.getElementById("register-image").files[0];
+    const registerName = document.getElementById("register-name").value;
+    const registerUserName = document.getElementById("register-username").value;
+    const registerEmail = document.getElementById("register-email").value;
+    const registerPassword = document.getElementById("register-password").value;
+
+    // Create a new FormData object and append the input values to it
+    let formData = new FormData()
+    formData.append("name", registerName)
+    formData.append("username", registerUserName)
+    formData.append("email", registerEmail)
+    formData.append("password", registerPassword)
+    formData.append("image", registerImage)
+
+    const headers = {
+        "Content-Type": "multipart/form-data",
+    }
+
+    // Construct the URL for the register API endpoint
+    const url = `${baseUrl}/register`
+
+    axios.post(url, formData, {
+        headers: headers
+    })
+        .then((res) => {
+                // Store the token and user in local storage
+                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("user", JSON.stringify(res.data.user));
+                setTimeout(() => {
+                    window.location.href = "/index.html"
+                }, 1600);
+                showAlert("logged out successfully", "success");
+
+        }).catch((error) => {
+            const message = error.response.data.message
+            showAlert(message, "error");
+        })
+}
+
 //Handle the click event of the login button.
 const loginBtnClicked = () => {
     // Get the username and password from input fields
@@ -17,13 +59,10 @@ const loginBtnClicked = () => {
             // Store the token and user in local storage
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
-
-
             setTimeout(() => {
                 window.location.href = "/index.html"
             }, 1600);
             showAlert("logged out successfully", "success");
-
         }).catch((error) => {
             const message = error.response.data.message
             showAlert(message, "error");
