@@ -132,7 +132,6 @@ const leftSideBarInformation = () => {
     const leftSideBar = document.getElementById("left-side-bar")
 
     const user = getCurrentUser()
-    console.log(user);
 
     let content = `
         <div class='rounded-t-lg bg-border h-28 relative'>
