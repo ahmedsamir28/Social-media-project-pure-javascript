@@ -49,38 +49,99 @@ const getDataPosts = (reload = true, page = 1) => {
     //Renders a single post on the page.
     const getPosts = (post) => {
         const author = post.author;
+        let user = getCurrentUser()
+        let isMyPost = user != null && post.author.id == user.id;
+        let editBtnContent = '';
+        if (isMyPost) {
+            editBtnContent = `
+            <div class="flex items-center gap-5">
 
+                <label class="" for="modal-4">
+                    <i class="fa-regular fa-pen-to-square cursor-pointer" ></i>
+                </label>
 
-        let content = `
-        <div class=" rounded-lg shadow-lg p-8 max-w-xl w-full bg-backgroundSecondary">
-            <!-- Post Header -->
-            <div class="flex items-center">
-                <a href="/pages/profilePosts.html">
-                    <img src=${author.profile_image}  alt="Profile Picture"
-                        class="rounded-full w-12 h-12 mr-4 border" />
-                </a>
-                <div class=''>
-                    <h2 class="font-semibold text-lg ">${author.username}</h2>
-                    <p class="text-gray-600">${post.created_at}</p>
-                </div>
+                <label class="" for="modal-3">
+                    <i class="fa-regular fa-rectangle-xmark cursor-pointer"></i>
+                </label>
             </div>
-            <!-- Post Content -->
-            <p class="text-sm mt-4">
-            ${post.body}
-            </p>
-            <!-- Post Image -->
-            <a href="/pages/userPost.html">
-                <img src=${post.image}  alt="Coffee" class="mt-4 rounded-lg" />
-            </a>
-            <!-- Post Actions -->
-            <label class="flex items-center mt-4 border-t border-zinc-400 pt-2 cursor-pointer"
-                for="modal-2">
-                <!-- You can add like, comment, and share buttons here -->
-                <span class='pt-2'> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span
-                        class='text-gray-600'>(${post.comments_count}) comments</span> </span>
-            </label>
+        
+            `;
+        }
+        let content = `
+    <div class=" rounded-lg shadow-lg p-8 max-w-xl w-full bg-backgroundSecondary">
+        <!-- Post Header -->
+        <div>
+            
+            <div class="flex items-start justify-between" >
+                <div class="flex items-center">
+                    <a href="/pages/profilePosts.html">
+                        <img src=${author.profile_image}  alt="Profile Picture"
+                            class="rounded-full w-12 h-12 mr-4 border" />
+                    </a>
+                    <div class=''>
+                        <h2 class="font-semibold text-lg ">${author.username}</h2>
+                        <p class="text-gray-600">${post.created_at}</p>
+                    </div>
+                </div>
+
+                <input class="modal-state" id="modal-3" type="checkbox" />
+                <div class="modal">
+                    <label class="modal-overlay" for="modal-3"></label>
+                    <div class="modal-content flex flex-col gap-5">
+                        <label for="modal-3" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                        <span class="mt-5" >Are you sure you want to delete the post?</span>
+                        <div class="flex gap-3">
+                            <button class="btn btn-error btn-block">Delete</button>
+                
+                            <label for="modal-3" class="btn btn-block">Cancel</label>
+                        </div>
+                    </div>
+                </div>
+
+                <input class="modal-state" id="modal-4" type="checkbox" />
+                <div class="modal">
+                    <label class="modal-overlay" for="modal-4"></label>
+
+                    <div class="modal-content flex flex-col gap-5 w-11/12">
+                        <label for="modal-4" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                        <h2 class="text-xl capitalize">Edit post</h2>
+                        <div class='flex flex-col gap-4'>
+                            <input id="post-title-input" class="input max-w-full" placeholder="The Title!" />
+                            <textarea id="post-body-input" class="textarea max-w-full" placeholder="Welcome!"> </textarea></>
+                            <input id="post-image-input" type="file" class=" max-w-full input-file" />
+                        </div>
+                        <div class="flex gap-3">
+                            <button  onclick="createNewPostClicked()" class="btn btn-primary btn-block">Add Post</button>
+                            <label class="btn btn-block"  for="modal-4">Cancel</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                ${editBtnContent}
+
+            </div>
+
         </div>
-        `;
+
+        <!-- Post Content -->
+        <p class="text-sm mt-4">
+        ${post.body}
+        </p>
+        <!-- Post Image -->
+        <a href="/pages/userPost.html">
+            <img src=${post.image}  alt="Coffee" class="mt-4 rounded-lg" />
+        </a>
+        <!-- Post Actions -->
+        <label class="flex items-center mt-4 border-t border-zinc-400 pt-2 cursor-pointer"
+            for="modal-2">
+            <!-- You can add like, comment, and share buttons here -->
+            <span class='pt-2'> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span
+                    class='text-gray-600'>(${post.comments_count}) comments</span> </span>
+        </label>
+    </div>
+`;
+
 
         posts.innerHTML += content;
     }

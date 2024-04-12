@@ -27,7 +27,7 @@ function createNewPostClicked() {
         "authorization": `Bearer ${token}`
     }
 
-     // Determine the URL based on whether it's a create or update request
+    // Determine the URL based on whether it's a create or update request
     // if (isCreate) {
     //     url = `${baseUrl}/posts`
 
@@ -44,8 +44,7 @@ function createNewPostClicked() {
     })
         .then((res) => {
             console.log(res);
-            showAlert("New Post Has Been Created", "success")
-// getDataPosts()
+            location.reload()
         })
         .catch((error) => {
             const message = error.response.data.message
