@@ -68,8 +68,8 @@ const getPostDetails = () => {
             </div>
     
             <div class='flex items-center justify-between gap-5 mt-5'>
-                <input class="w-full outline-none py-1.5 rounded-lg pl-5 bg-first-color border-2 border-zinc-500 placeholder:text-zinc-500" placeholder="Add your comment" />
-                <button class='btn-primary py-2 px-3 rounded-lg'>Add</button>
+                <input id="comment-input" class="w-full outline-none py-1.5 rounded-lg pl-5 bg-first-color border-2 border-zinc-500 placeholder:text-zinc-500" placeholder="Add your comment" />
+                <button class='btn-primary py-2 px-3 rounded-lg' onclick="createCommentClicked()">Add</button>
             </div>
         </div>
             `;

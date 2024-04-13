@@ -14,7 +14,7 @@ function createNewPostClicked() {
     const body = document.getElementById("post-body-input").value
     const image = document.getElementById("post-image-input").files[0]
 
-    
+
 
     // Create form data
     let formData = new FormData()
@@ -49,7 +49,7 @@ function createNewPostClicked() {
         })
 }
 
-const editPostClicked = (postObject) => {  
+const editPostClicked = (postObject) => {
     // Parse the JSON string to get the post object
     let post = JSON.parse(decodeURIComponent(postObject));
     // Update the submit button text
@@ -96,3 +96,32 @@ const deletePostBtnClicked = (postObject) => {
     document.getElementById("delete-post-id-input").value = post.id
 }
 
+//Handles the event when the create comment button is clicked.
+const createCommentClicked = () => {
+    // Get the comment body from the input field
+    let commentBody = document.getElementById("comment-input").value;
+    // Get the token from local storage
+    let token = localStorage.getItem("token");
+    // Set the URL for the API endpoint
+    let url = `${baseUrl}/posts/${id}/comments`;
+    // Set the parameters for the API request
+    const params = {
+        body: commentBody,
+    };
+    // Set the request options for the API request
+    const requestOptions = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    };
+    // Send the API request to create a comment
+    axios.post(url, params, requestOptions)
+        .then(res => {
+            // Refresh the post details after creating the comment
+            getPostDetails();
+        })
+        .catch(error => {
+        });
+
+}
