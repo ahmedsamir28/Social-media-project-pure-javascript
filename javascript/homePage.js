@@ -248,13 +248,14 @@ const getModalPostDetails = (postId) => {
                     id="comment-input-modal"
                     class="w-full outline-none py-1.5 rounded-lg pl-5 bg-first-color border-2 border-zinc-500 placeholder:text-zinc-500 "
                     placeholder="Add your comment" />
-                <button  onclick="createCommentClicked()" class='btn-primary py-2 px-3 rounded-lg'>Add</button>
+                <button onclick="createModalCommentClicked(${postId})"  class='btn-primary py-2 px-3 rounded-lg'>Add</button>
             </div>
         </div>
             `;
 
             // Render the post details on the page
             document.getElementById("post-modal-details").innerHTML = postContent;
+
         })
         .catch(error => {
             console.log(error);
@@ -263,7 +264,7 @@ const getModalPostDetails = (postId) => {
 
 
 //Handles the event when the create comment button is clicked.
-const createModalCommentClicked = () => {
+const createModalCommentClicked = (id) => {
     // Get the comment body from the input field
     let commentBody = document.getElementById("comment-input-modal").value;
     // Get the token from local storage
