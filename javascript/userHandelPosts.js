@@ -120,8 +120,11 @@ const createCommentClicked = () => {
         .then(res => {
             // Refresh the post details after creating the comment
             getPostDetails();
+            getModalPostDetails()
         })
         .catch(error => {
         });
 
 }
+
+

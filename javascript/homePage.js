@@ -88,7 +88,7 @@ const getDataPosts = (reload = true, page = 1) => {
             </div>
         </div>
         <!-- Post Content -->
-        <p class="text-sm mt-4">
+        <p onclick="postClicked(${post.id})" class="text-sm mt-4 cursor-pointer">
         ${post.body}
         </p>
         <!-- Post Image -->
@@ -96,7 +96,7 @@ const getDataPosts = (reload = true, page = 1) => {
             <img src=${post.image}  alt="Coffee" class="mt-4 rounded-lg" />
         </div>
         <!-- Post Actions -->
-        <label class="flex items-center mt-4 border-t border-zinc-400 pt-2 cursor-pointer"
+        <label onclick="getModalPostDetails(${post.id})" class="flex items-center mt-4 border-t border-zinc-400 pt-2 cursor-pointer"
             for="modal-2">
             <!-- You can add like, comment, and share buttons here -->
             <span class='pt-2'> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span
@@ -186,3 +186,108 @@ const leftSideBarInformation = () => {
 leftSideBarInformation()
 
 
+
+const getModalPostDetails = (postId) => {
+
+    // Fetch the post details from the API
+    axios.get(`${baseUrl}/posts/${postId}`)
+        .then(res => {
+            const post = res.data.data;
+            const comments = post.comments;
+            const author = post.author;
+
+            document.getElementById("post-modal-details").innerHTML = '';
+
+            // Generate the HTML for the post details
+            let postContent = `
+            <div  class=" rounded-lg shadow-lg max-w-xl w-full p-5">
+            <!-- Post Header -->
+            <div class="flex items-center">
+                <img src=${author.profile_image}  alt="Profile Picture"
+                    class="rounded-full w-12 h-12 mr-4" />
+                <div class=''>
+                    <h2 class="font-semibold text-lg ">${author.username}</h2>
+                    <p class="text-gray-600">${post.created_at}</p>
+                </div>
+            </div>
+            <!-- Post Content -->
+            <p class="text-sm mt-4">
+            ${post.body}
+            </p>
+            <!-- Post Image -->
+            <img src=${post.image} alt="Coffee" class="mt-4 rounded-lg" />
+            <!-- Post Actions -->
+            <div class="flex flex-col items-start mt-5 border-y border-zinc-400 pt-1 pb-2">
+                <!-- You can add like, comment, and share buttons here -->
+                <span class='pt-2 '> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span
+                        class='text-gray-600'>(${post.comments_count}) comments</span> </span>
+            </div>
+
+            <div class=''>
+            ${comments.map(comment => `
+
+                <div class=' border-b-2 border-zinc-400 py-5'>
+                    <div class="flex items-center">
+                        <img src=${comment.author.profile_image} alt="Profile Picture"
+                            class="rounded-full w-10 h-10 mr-4" />
+                        <div class=''>
+                            <h2 class="font-semibold text-lg ">${comment.author.username}</h2>
+                        </div>
+                    </div>
+                    <!-- Post Content -->
+                    <p class="text-sm mt-2">
+                    ${comment.body}
+                    </p>
+                </div>
+                `)}
+
+            </div>
+
+            <div class='flex items-center justify-between gap-5  mt-5'>
+                <input
+                    id="comment-input-modal"
+                    class="w-full outline-none py-1.5 rounded-lg pl-5 bg-first-color border-2 border-zinc-500 placeholder:text-zinc-500 "
+                    placeholder="Add your comment" />
+                <button  onclick="createCommentClicked()" class='btn-primary py-2 px-3 rounded-lg'>Add</button>
+            </div>
+        </div>
+            `;
+
+            // Render the post details on the page
+            document.getElementById("post-modal-details").innerHTML = postContent;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
+//Handles the event when the create comment button is clicked.
+const createModalCommentClicked = () => {
+    // Get the comment body from the input field
+    let commentBody = document.getElementById("comment-input-modal").value;
+    // Get the token from local storage
+    let token = localStorage.getItem("token");
+    // Set the URL for the API endpoint
+    let url = `${baseUrl}/posts/${id}/comments`;
+    // Set the parameters for the API request
+    const params = {
+        body: commentBody,
+    };
+    // Set the request options for the API request
+    const requestOptions = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    };
+    // Send the API request to create a comment
+    axios.post(url, params, requestOptions)
+        .then(res => {
+            // Refresh the post details after creating the comment
+            getModalPostDetails()
+        })
+        .catch(error => {
+        });
+
+}
