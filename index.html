@@ -17,6 +17,23 @@
 <body>
 
     
+    <div class="fixed z-50 w-96 top-24 right-10 " id="show-alert"> </div>
+
+    <input class="modal-state" id="modal-3" type="checkbox" />
+    <div class="modal">
+        <label class="modal-overlay" for="modal-3"></label>
+        <div class="modal-content flex flex-col gap-5">
+            <label for="modal-3" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+            <span class="mt-5" >Are you sure you want to delete the post? 
+            <span id="delete-post-title"></span>
+            </span>
+            <input type="text" id="delete-post-id-input" value="">
+            <div class="flex gap-3">
+                <button class="btn btn-error btn-block">Yes Delete</button>
+                <label for="modal-3" class="btn btn-block">Cancel</label>
+            </div>
+        </div>
+    </div>
 
     <!-- Start nav bar -->
     <div class="bg-backgroundSecondary navbar rounded-lg fixed z-50 top-0 ">
@@ -102,14 +119,18 @@
 
                     <div class="modal-content flex flex-col gap-5 w-11/12">
                         <label for="modal-1" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-                        <h2 class="text-xl capitalize">create a new post</h2>
+                        <h2 class="text-xl capitalize"  id="post-model-title">create a new post</h2>
                         <div class='flex flex-col gap-4'>
                             <input id="post-title-input" class="input max-w-full" placeholder="The Title!" />
+                            <input type="hidden" id="post-id-input" value="">
                             <textarea id="post-body-input" class="textarea max-w-full" placeholder="Welcome!"> </textarea></>
                             <input id="post-image-input" type="file" class=" max-w-full input-file" />
                         </div>
                         <div class="flex gap-3">
-                            <button  onclick="createNewPostClicked()" class="btn btn-primary btn-block">Add Post</button>
+                            <button
+                                id="post-modal-submit-btn"
+                                onclick="createNewPostClicked()" 
+                                class="btn btn-primary btn-block">Add Post</button>
                             <label class="btn btn-block"  for="modal-1">Cancel</label>
                         </div>
                     </div>
@@ -245,7 +266,7 @@
     </div>
 
     <!-- End home page -->
-    <script src="./javascript/userPosts.js"></script>
+    <script src="./javascript/userHandelPosts.js"></script>
     <script src="./javascript//auth.js"></script>
     <script src="./javascript/mainLogic.js"></script>
     <script src="./javascript/homePage.js"></script>

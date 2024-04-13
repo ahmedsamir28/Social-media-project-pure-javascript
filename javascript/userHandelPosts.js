@@ -1,9 +1,12 @@
 //Handles the click event when creating a new post.
 function createNewPostClicked() {
+    // Initialize variables
+    const token = localStorage.getItem("token")
+    let url = ``
     // Get the post ID input value
-    // let postId = document.getElementById("post-id-input").value
+    let postId = document.getElementById("post-id-input").value
     // Check if creating a new post or updating an existing one
-    // let isCreate = postId == null || postId == ""
+    let isCreate = postId == null || postId == ""
 
 
     // Get values from input fields
@@ -11,9 +14,7 @@ function createNewPostClicked() {
     const body = document.getElementById("post-body-input").value
     const image = document.getElementById("post-image-input").files[0]
 
-    // Initialize variables
-    const token = localStorage.getItem("token")
-    let url = ``
+    
 
     // Create form data
     let formData = new FormData()
@@ -28,27 +29,43 @@ function createNewPostClicked() {
     }
 
     // Determine the URL based on whether it's a create or update request
-    // if (isCreate) {
-    //     url = `${baseUrl}/posts`
+    if (isCreate) {
+        url = `${baseUrl}/posts`
 
-    // } else {
+    } else {
+        formData.append("_method", "put")
+        url = `${baseUrl}/posts/${postId}`
+    }
 
-    //     formData.append("_method", "put")
-    //     url = `${baseUrl}/posts/${postId}`
-    // }
-
-
-    url = `${baseUrl}/posts`
     axios.post(url, formData, {
         headers: headers
     })
         .then((res) => {
-            console.log(res);
             location.reload()
         })
         .catch((error) => {
             const message = error.response.data.message
             showAlert(message, "error")
         })
-
 }
+
+const editPostClicked = (postObject) => {  
+    // Parse the JSON string to get the post object
+    let post = JSON.parse(decodeURIComponent(postObject));
+
+    // Update the submit button text
+    document.getElementById("post-modal-submit-btn").innerHTML = "Update";
+
+    // Set the post id input value
+    document.getElementById("post-id-input").value = post.id;
+
+    // Update the post modal title
+    document.getElementById("post-model-title").innerHTML = "Edit Post";
+
+    // Set the post title input value
+    document.getElementById("post-title-input").value = post.title;
+
+    // Set the post body input value
+    document.getElementById("post-body-input").value = post.body;
+}
+

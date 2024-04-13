@@ -56,11 +56,11 @@ const getDataPosts = (reload = true, page = 1) => {
             editBtnContent = `
             <div class="flex items-center gap-5">
 
-                <label class="" for="modal-4">
-                    <i class="fa-regular fa-pen-to-square cursor-pointer" ></i>
+                <label class="btn" for="modal-1" onclick="editPostClicked('${encodeURIComponent(JSON.stringify(post))}')">
+                    <i class="fa-regular fa-pen-to-square cursor-pointer"></i>
                 </label>
 
-                <label class="" for="modal-3">
+                <label class="btn" for="modal-3">
                     <i class="fa-regular fa-rectangle-xmark cursor-pointer"></i>
                 </label>
             </div>
@@ -84,39 +84,7 @@ const getDataPosts = (reload = true, page = 1) => {
                     </div>
                 </div>
 
-                <input class="modal-state" id="modal-3" type="checkbox" />
-                <div class="modal">
-                    <label class="modal-overlay" for="modal-3"></label>
-                    <div class="modal-content flex flex-col gap-5">
-                        <label for="modal-3" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-                        <span class="mt-5" >Are you sure you want to delete the post?</span>
-                        <div class="flex gap-3">
-                            <button class="btn btn-error btn-block">Delete</button>
                 
-                            <label for="modal-3" class="btn btn-block">Cancel</label>
-                        </div>
-                    </div>
-                </div>
-
-                <input class="modal-state" id="modal-4" type="checkbox" />
-                <div class="modal">
-                    <label class="modal-overlay" for="modal-4"></label>
-
-                    <div class="modal-content flex flex-col gap-5 w-11/12">
-                        <label for="modal-4" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-                        <h2 class="text-xl capitalize">Edit post</h2>
-                        <div class='flex flex-col gap-4'>
-                            <input id="post-title-input" class="input max-w-full" placeholder="The Title!" />
-                            <textarea id="post-body-input" class="textarea max-w-full" placeholder="Welcome!"> </textarea></>
-                            <input id="post-image-input" type="file" class=" max-w-full input-file" />
-                        </div>
-                        <div class="flex gap-3">
-                            <button  onclick="createNewPostClicked()" class="btn btn-primary btn-block">Add Post</button>
-                            <label class="btn btn-block"  for="modal-4">Cancel</label>
-                        </div>
-                    </div>
-
-                </div>
 
                 ${editBtnContent}
 
@@ -221,3 +189,14 @@ const leftSideBarInformation = () => {
 }
 
 leftSideBarInformation()
+
+//Function to handle the delete post edit event
+const deletePostBtnClicked = (postObject) => {  
+    // Decode the post object string
+let post = JSON.parse(decodeURIComponent(postObject))
+    // Set the value of the delete post id input field
+
+document.getElementById("delete-post-id-input").value = post.id
+
+
+}
