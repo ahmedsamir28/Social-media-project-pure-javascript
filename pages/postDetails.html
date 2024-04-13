@@ -11,31 +11,45 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="fixed z-50 w-96 top-24 right-10 " id="show-alert"> </div>
 
-    <!-- Start nav bar -->
-    <div class="bg-backgroundSecondary navbar rounded-lg fixed z-50 top-0 ">
-        <div class='container m-auto flex justify-between items-center'>
-            <div class="navbar-start cursor-pointer">
-                <a href="/">
-                    <span class=" text-lg hover:bg-zinc-700 px-3 py-1.5 rounded-lg">Fake Blog</span>
-                </a>
-            </div>
-            <div class="navbar-end">
-                <div class="flex gap-3 cursor-pointer">
-                    <a href="/pages/profilePosts.html">
-                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" class="rounded-full w-12 h-12 mr-4"
+  <!-- Start nav bar -->
+  <div class="bg-backgroundSecondary navbar rounded-lg fixed z-50 top-0 ">
+    <div class='container m-auto flex justify-between items-center'>
+        <div class="navbar-start cursor-pointer">
+            <a href="/">
+                <span class=" text-lg hover:bg-border px-3 py-1.5 rounded-lg">Fake Blog</span>
+            </a>
+        </div>
+        <div class="navbar-end">
+            <div class="flex gap-3 cursor-pointer">
+
+
+                <div class="flex items-center gap-3">
+
+                    <a href="/pages/profilePosts.html" class="flex items-center gap-3" id="nav-profile-name-image">
+                        <h6 id="nav_user_name"></h6>
+                        <img id="nav-profile-image" src="" class="rounded-full w-12 h-12 mr-4 border"
                             alt="avatar" />
                     </a>
-                    <div class='flex items-center gap-3'>
+
+                    <div id="logout-div">
+                        <button onclick="logOut()" type="button" class="btn btn-outline-error">Logout</button>
+                    </div>
+
+                    <div class='flex items-center gap-3' id="auth-div">
                         <a href="/pages/login.html" class="btn btn-outline-primary">Login</a>
                         <a href="/pages/register.html"
-                            class="border-2 border-zinc-600 py-1.5 px-3  rounded-xl hover:bg-zinc-700">Register</a>
+                            class="border-2 border-zinc-600 py-1.5 px-3  rounded-xl hover:bg-border">Register</a>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
-    <!-- End nav bar -->
+</div>
+<!-- End nav bar -->
 
     <div class=" flex justify-center my-24">
         <div class="bg-backgroundSecondary rounded-lg shadow-lg max-w-xl w-full p-8">
@@ -80,8 +94,11 @@
                 <button class='btn-primary py-2 px-3 rounded-lg'>Add</button>
             </div>
         </div>
+
     </div>
 
+    <script src="/javascript/postDetails.js"></script>
+    <script src="/javascript/auth.js"></script>
     <script src="/javascript/mainLogic.js"></script>
     <script src="/javascript/homePage.js"></script>
 

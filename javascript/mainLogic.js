@@ -31,7 +31,6 @@ const setupUi = () => {
     navProfileImage.src = user.profile_image
 
 }
-
 // Retrieve the current user from local storage
 const getCurrentUser = () => {
     let user = null;

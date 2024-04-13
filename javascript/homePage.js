@@ -91,7 +91,7 @@ const getDataPosts = (reload = true, page = 1) => {
         ${post.body}
         </p>
         <!-- Post Image -->
-        <a href="/pages/userPost.html">
+        <a href="/pages/postDetails.html">
             <img src=${post.image}  alt="Coffee" class="mt-4 rounded-lg" />
         </a>
         <!-- Post Actions -->

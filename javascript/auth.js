@@ -63,6 +63,7 @@ const loginBtnClicked = () => {
                 window.location.href = "/index.html"
             }, 1600);
             showAlert("logged out successfully", "success");
+            
         }).catch((error) => {
             const message = error.response.data.message
             showAlert(message, "error");
