@@ -47,18 +47,24 @@ const getPostDetails = () => {
             </div>
     
             <div class=''>
-                <div class=' border-b-2 border-zinc-400 py-5'>
-                    <div class="flex items-center">
-                        <img src="https://via.placeholder.com/50" alt="Profile Picture" class="rounded-full w-10 h-10 mr-4" />
-                        <div class=''>
-                            <h2 class="font-semibold text-lg">John Doe</h2>
-                        </div>
+            ${comments.map(comment=> `
+                    <div class=' border-b-2 border-zinc-400 py-5'>
+                            <div class="flex items-center">
+                                <img src=${comment.author.profile_image}  alt="Profile Picture" class="border rounded-full w-10 h-10 mr-4" />
+                                <div class=''>
+                                    <h2 class="font-semibold text-lg">
+                                    ${comment.author.username}
+                                    </h2>
+                                </div>
+                            </div>
+                            <!-- Post Content -->
+                            <p class="text-sm mt-2">
+                                ${comment.body}
+                            </p>
                     </div>
-                    <!-- Post Content -->
-                    <p class="text-sm mt-2">
-                        Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee
-                    </p>
-                </div>
+            `)}
+                
+
             </div>
     
             <div class='flex items-center justify-between gap-5 mt-5'>

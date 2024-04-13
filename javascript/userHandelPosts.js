@@ -95,3 +95,4 @@ const deletePostBtnClicked = (postObject) => {
     // Set the value of the delete post id input field
     document.getElementById("delete-post-id-input").value = post.id
 }
+
