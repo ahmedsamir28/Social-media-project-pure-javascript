@@ -68,3 +68,30 @@ const editPostClicked = (postObject) => {
     document.getElementById("post-body-input").value = post.body;
 }
 
+//Deletes a post from the server and performs additional actions.
+const confirmPostDelete = () => {
+    const token = localStorage.getItem("token")
+    const postId = document.getElementById("delete-post-id-input").value
+
+    const url = `${baseUrl}/posts/${postId}`
+    const headers = {
+        "Content-Type": "multipart/form-data",
+        "authorization": `Bearer ${token}`
+    }
+
+    axios.delete(url, {
+        headers: headers
+    })
+        .then((res) => {
+            location.reload()
+        }).catch((error) => {
+        })
+}
+
+//Function to handle the delete post edit event
+const deletePostBtnClicked = (postObject) => {
+    // Decode the post object string
+    let post = JSON.parse(decodeURIComponent(postObject))
+    // Set the value of the delete post id input field
+    document.getElementById("delete-post-id-input").value = post.id
+}

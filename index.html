@@ -27,9 +27,9 @@
             <span class="mt-5" >Are you sure you want to delete the post? 
             <span id="delete-post-title"></span>
             </span>
-            <input type="text" id="delete-post-id-input" value="">
+            <input type="hidden" id="delete-post-id-input" value="">
             <div class="flex gap-3">
-                <button class="btn btn-error btn-block" >Yes Delete</button>
+                <button class="btn btn-error btn-block" onclick="confirmPostDelete()">Yes Delete</button>
                 <label for="modal-3" class="btn btn-block">Cancel</label>
             </div>
         </div>

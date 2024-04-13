@@ -184,13 +184,4 @@ const leftSideBarInformation = () => {
 
 leftSideBarInformation()
 
-//Function to handle the delete post edit event
-const deletePostBtnClicked = (postObject) => {
-    // Decode the post object string
-    let post = JSON.parse(decodeURIComponent(postObject))
-    console.log(post);
-
-    // Set the value of the delete post id input field
-    document.getElementById("delete-post-id-input").value = post.id
-}
 
