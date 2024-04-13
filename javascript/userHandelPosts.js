@@ -52,7 +52,6 @@ function createNewPostClicked() {
 const editPostClicked = (postObject) => {  
     // Parse the JSON string to get the post object
     let post = JSON.parse(decodeURIComponent(postObject));
-
     // Update the submit button text
     document.getElementById("post-modal-submit-btn").innerHTML = "Update";
 

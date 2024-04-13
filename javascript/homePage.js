@@ -57,10 +57,10 @@ const getDataPosts = (reload = true, page = 1) => {
             <div class="flex items-center gap-5">
 
                 <label class="btn" for="modal-1" onclick="editPostClicked('${encodeURIComponent(JSON.stringify(post))}')">
-                    <i class="fa-regular fa-pen-to-square cursor-pointer"></i>
+                    <i class="fa-regular fa-pen-to-square cursor-pointer" ></i>
                 </label>
 
-                <label class="btn" for="modal-3">
+                <label class="btn" for="modal-3" onclick="deletePostBtnClicked('${encodeURIComponent(JSON.stringify(post))}')">
                     <i class="fa-regular fa-rectangle-xmark cursor-pointer"></i>
                 </label>
             </div>
@@ -83,15 +83,9 @@ const getDataPosts = (reload = true, page = 1) => {
                         <p class="text-gray-600">${post.created_at}</p>
                     </div>
                 </div>
-
-                
-
                 ${editBtnContent}
-
             </div>
-
         </div>
-
         <!-- Post Content -->
         <p class="text-sm mt-4">
         ${post.body}
@@ -191,12 +185,12 @@ const leftSideBarInformation = () => {
 leftSideBarInformation()
 
 //Function to handle the delete post edit event
-const deletePostBtnClicked = (postObject) => {  
+const deletePostBtnClicked = (postObject) => {
     // Decode the post object string
-let post = JSON.parse(decodeURIComponent(postObject))
+    let post = JSON.parse(decodeURIComponent(postObject))
+    console.log(post);
+
     // Set the value of the delete post id input field
-
-document.getElementById("delete-post-id-input").value = post.id
-
-
+    document.getElementById("delete-post-id-input").value = post.id
 }
+
