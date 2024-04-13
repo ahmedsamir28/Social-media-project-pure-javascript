@@ -67,6 +67,7 @@ const getDataPosts = (reload = true, page = 1) => {
         
             `;
         }
+
         let content = `
     <div class=" rounded-lg shadow-lg p-8 max-w-xl w-full bg-backgroundSecondary">
         <!-- Post Header -->
@@ -91,9 +92,9 @@ const getDataPosts = (reload = true, page = 1) => {
         ${post.body}
         </p>
         <!-- Post Image -->
-        <a href="/pages/postDetails.html">
+        <div class="cursor-pointer" onclick="postClicked(${post.id})">
             <img src=${post.image}  alt="Coffee" class="mt-4 rounded-lg" />
-        </a>
+        </div>
         <!-- Post Actions -->
         <label class="flex items-center mt-4 border-t border-zinc-400 pt-2 cursor-pointer"
             for="modal-2">
