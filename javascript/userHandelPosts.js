@@ -119,10 +119,11 @@ const createCommentClicked = () => {
     axios.post(url, params, requestOptions)
         .then(res => {
             // Refresh the post details after creating the comment
+            showAlert("The comment has been added successfully","success")
             getPostDetails();
-            getModalPostDetails()
         })
         .catch(error => {
+            showAlert("Please add a comment", "error");
         });
 
 }

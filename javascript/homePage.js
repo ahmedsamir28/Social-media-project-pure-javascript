@@ -48,6 +48,7 @@ const getDataPosts = (reload = true, page = 1) => {
 
     //Renders a single post on the page.
     const getPosts = (post) => {
+
         const author = post.author;
         let user = getCurrentUser()
         let isMyPost = user != null && post.author.id == user.id;
@@ -104,8 +105,6 @@ const getDataPosts = (reload = true, page = 1) => {
         </label>
     </div>
 `;
-
-
         posts.innerHTML += content;
     }
 }
@@ -126,12 +125,9 @@ const getDataUsers = () => {
             });
         })
         .catch(err => console.log(err));
-
     //Renders a single post on the page.
     const getUsers = (user) => {
         const users = document.getElementById("users")
-
-
         let content = `
             <div>
                 <a href="/pages/profilePosts.html" class="flex items-center justify-between cursor-pointer">
@@ -144,7 +140,6 @@ const getDataUsers = () => {
                 </a>
             </div>
         `;
-
         users.innerHTML += content;
     }
 }
@@ -153,9 +148,12 @@ getDataUsers()
 setupUi()
 
 const leftSideBarInformation = () => {
+
     const leftSideBar = document.getElementById("left-side-bar")
 
     const user = getCurrentUser()
+
+    document.getElementById("image-add-post").src=`${user.profile_image}`
 
     let content = `
         <div class='rounded-t-lg bg-border h-28 relative'>
@@ -175,7 +173,6 @@ const leftSideBarInformation = () => {
             <div
                 class='capitalize text-center my-3 text-blue-600 border-t border-gray-500 py-3 text-sm cursor-pointer'>
                 <a href="/pages/profilePosts.html"> view profile </a>
-
         </div>
 `;
 
@@ -262,7 +259,6 @@ const getModalPostDetails = (postId) => {
         });
 }
 
-
 //Handles the event when the create comment button is clicked.
 const createModalCommentClicked = (id) => {
     // Get the comment body from the input field
@@ -286,9 +282,11 @@ const createModalCommentClicked = (id) => {
     axios.post(url, params, requestOptions)
         .then(res => {
             // Refresh the post details after creating the comment
-            getModalPostDetails()
+            location.reload()
         })
         .catch(error => {
         });
-
 }
+
+
+

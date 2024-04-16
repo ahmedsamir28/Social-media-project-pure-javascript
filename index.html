@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/5e6d16379d.js" crossorigin="anonymous"></script>
 
-    <title>Document</title>
+    <title>Simple Social media</title>
 </head>
 
 <body>
@@ -49,11 +49,11 @@
 
                     <div class="flex items-center gap-3">
 
-                        <a href="/pages/profilePosts.html" class="flex items-center gap-3" id="nav-profile-name-image">
+                        <div onclick="profileClicked()"  class="flex items-center gap-3" id="nav-profile-name-image">
                             <h6 id="nav_user_name"></h6>
                             <img id="nav-profile-image" src="" class="rounded-full w-12 h-12 mr-4 border"
                                 alt="avatar" />
-                        </a>
+                        </div>
 
                         <div id="logout-div">
                             <button onclick="logOut()" type="button" class="btn btn-outline-error">Logout</button>
@@ -75,10 +75,10 @@
 
     <!-- Start home page -->
 
-    <div class='container m-auto flex justify-center gap-10 items-start relative mt-24  '>
+    <div class=' container m-auto flex justify-center gap-5 relative mt-24  '>
 
         <!--Start left side-bar -->
-        <div class=' '>
+        <div class=''>
             <div class='bg-backgroundSecondary  rounded-lg shadow-lg  w-64 ' id="left-side-bar">
                 <!-- <div class='rounded-t-lg bg-border h-28 relative'>
                     <img src="https://via.placeholder.com/50" alt="Profile Picture"
@@ -139,7 +139,7 @@
 
                 <div class="rounded-lg shadow-lg py-6 px-8 mb-2 max-w-xl w-full">
                     <div class="flex items-center">
-                        <img src="https://via.placeholder.com/50" alt="Profile Picture"
+                        <img id="image-add-post" src="" alt="Profile Picture"
                             class="rounded-full w-12 h-12 mr-4" />
                         <label class='bg-border w-full py-3 pl-5 rounded-3xl cursor-pointer' for="modal-1">
                             <h6 class=''>Start a post .....</h6>
@@ -266,7 +266,7 @@
     </div>
 
     <!-- End home page -->
-    
+    <script src="/javascript/getProfileUser.js"></script>
     <script src="/javascript/postDetails.js"></script>
     <script src="/javascript/userHandelPosts.js"></script>
     <script src="/javascript//auth.js"></script>

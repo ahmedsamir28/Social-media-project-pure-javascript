@@ -28,11 +28,11 @@
 
                 <div class="flex items-center gap-3">
 
-                    <a href="/pages/profilePosts.html" class="flex items-center gap-3" id="nav-profile-name-image">
+                    <div  onclick="profileClicked()" class="flex items-center gap-3" id="nav-profile-name-image">
                         <h6 id="nav_user_name"></h6>
                         <img id="nav-profile-image" src="" class="rounded-full w-12 h-12 mr-4 border"
                             alt="avatar" />
-                    </a>
+                    </div>
 
                     <div id="logout-div">
                         <button onclick="logOut()" type="button" class="btn btn-outline-error">Logout</button>
@@ -101,7 +101,6 @@
     <script src="/javascript/userHandelPosts.js"></script>
     <script src="/javascript/postDetails.js"></script>
     <script src="/javascript/auth.js"></script>
-    <!-- <script src="/javascript/homePage.js"></script> -->
 
 
 </body>

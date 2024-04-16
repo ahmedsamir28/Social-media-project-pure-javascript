@@ -78,3 +78,26 @@ const showAlert = (customMessage, type = "success") => {
     // Append the custom message and type to the alert placeholder
     appendAlert(customMessage, type);
 };
+
+//Get the current user ID from the URL parameters.
+//The current user ID, or null if not found.
+const getCurrentUserID = () => {
+    // Get the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Get the user ID from the URL parameters
+    const id = urlParams.get("userId");
+
+    // Return the user ID
+    return id;
+}
+
+//Redirects the user to their profile page
+const profileClicked = () => {
+    // Get the current user
+    const user = getCurrentUser();
+    // Get the user ID
+    const userId = user.id;
+    // Redirect the user to their profile page
+    window.location = `/pages/profilePosts.html?userId=${userId}`;
+};
