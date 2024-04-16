@@ -72,14 +72,15 @@ const getDataPosts = (reload = true, page = 1) => {
         let content = `
     <div class=" rounded-lg shadow-lg p-8 max-w-xl w-full bg-backgroundSecondary">
         <!-- Post Header -->
+
         <div>
             
             <div class="flex items-start justify-between" >
                 <div class="flex items-center">
-                    <a href="/pages/profilePosts.html">
+                    <div onclick="userClicked(${author.id})" class = "cursor-pointer" >
                         <img src=${author.profile_image}  alt="Profile Picture"
                             class="rounded-full w-12 h-12 mr-4 border" />
-                    </a>
+                    </div>
                     <div class=''>
                         <h2 class="font-semibold text-lg ">${author.username}</h2>
                         <p class="text-gray-600">${post.created_at}</p>
@@ -88,6 +89,7 @@ const getDataPosts = (reload = true, page = 1) => {
                 ${editBtnContent}
             </div>
         </div>
+        
         <!-- Post Content -->
         <p onclick="postClicked(${post.id})" class="text-sm mt-4 cursor-pointer">
         ${post.body}
@@ -128,16 +130,17 @@ const getDataUsers = () => {
     //Renders a single post on the page.
     const getUsers = (user) => {
         const users = document.getElementById("users")
+
         let content = `
             <div>
-                <a href="/pages/profilePosts.html" class="flex items-center justify-between cursor-pointer">
-                    <div class="flex items-center">
+                <div onclick="userClicked(${user.id})"  class="flex items-center justify-between cursor-pointer">
+                    <div  class="flex items-center">
                         <img src=${user.profile_image} alt="Profile Picture"
                             class="rounded-full w-12 h-12 mr-4" />
                         <h6>${user.name}</h6>
                     </div>
                     <div class="item"><i class="fa-solid fa-angles-right text-sm"></i></div>
-                </a>
+                </div>
             </div>
         `;
         users.innerHTML += content;
@@ -158,7 +161,7 @@ const leftSideBarInformation = () => {
     let content = `
         <div class='rounded-t-lg bg-border h-28 relative'>
                 <img src=${user.profile_image} alt="Profile Picture"
-                    class="absolute left-24 top-20 rounded-full w-16 h-16 p-1 bg-zinc-200" />
+                    class="cursor-pointer absolute left-24 top-20 rounded-full w-16 h-16 p-1 bg-zinc-200" />
             </div>
             <h6 class='capitalize text-md text-center mt-10 font-light'>${user.username}</h6>
             <h6 class='text-md text-center mt-1.5 font-thin '>${user.email}</h6>
@@ -172,7 +175,7 @@ const leftSideBarInformation = () => {
             </div>
             <div
                 class='capitalize text-center my-3 text-blue-600 border-t border-gray-500 py-3 text-sm cursor-pointer'>
-                <a href="/pages/profilePosts.html"> view profile </a>
+                <div onclick="profileClicked()" class = "cursor-pointer" > view profile </div>
         </div>
 `;
 
@@ -287,6 +290,4 @@ const createModalCommentClicked = (id) => {
         .catch(error => {
         });
 }
-
-
 

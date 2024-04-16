@@ -46,24 +46,41 @@ const getProfilePosts = () => {
 
 
         let content = `
-        <div class="bg-backgroundSecondary rounded-lg">
-        <div class="bg-first-color rounded-lg shadow-lg p-8 max-w-xl w-full">
-            <div class="flex items-center">
-                <img src="https://via.placeholder.com/50" alt="Profile Picture" class="rounded-full w-12 h-12 mr-4" />
-                <div class=''>
-                    <h2 class="font-semibold text-lg">John Doe</h2>
-                    <p class="text-gray-600">March 26 at 10:00 AM</p>
+            <div class="bg-backgroundSecondary rounded-lg">
+                <div class="bg-first-color rounded-lg shadow-lg p-8 max-w-xl w-full">
+                    <!-- Post Header -->
+                        <div>
+                            <div class="flex items-start justify-between" >
+                                <div class="flex items-center">
+                                    <a href="/pages/profilePosts.html">
+                                        <img src=${author.profile_image}  alt="Profile Picture"
+                                            class="rounded-full w-12 h-12 mr-4 border" />
+                                    </a>
+                                    <div class=''>
+                                        <h2 class="font-semibold text-lg ">${author.username}</h2>
+                                        <p class="text-gray-600">${post.created_at}</p>
+                                    </div>
+                                </div>
+                                ${editBtnContent}
+                            </div>
+                        </div>
+
+                    <!-- Post Content -->
+                    <p class="text-sm mt-4">
+                    ${post.body}
+                    </p>
+                    <!-- Post Image -->
+                    <img src=${post.image} alt="Coffee" class="mt-4 rounded-lg" />
+                    <!-- Post Actions -->
+                    <div class="flex items-center mt-4 border-t border-zinc-400 pt-2">
+                        <!-- You can add like, comment, and share buttons here -->
+                        <span class='pt-2'> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> 
+                            <span class='text-gray-600'>(${post.comments_count}) comments</span> 
+                        </span>
+                    </div>
+
                 </div>
             </div>
-            <p class="text-sm mt-4">
-                Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️
-            </p>
-            <img src="https://via.placeholder.com/500" alt="Coffee" class="mt-4 rounded-lg" />
-            <div class="flex items-center mt-4 border-t border-zinc-400 pt-2">
-                <span class='pt-2'> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span class='text-gray-600'>(5) comments</span> </span>
-            </div>
-        </div>
-    </div>
         `
         userPosts.innerHTML += content
 
@@ -72,3 +89,22 @@ const getProfilePosts = () => {
 
 getProfilePosts()
 setupUi()
+
+
+// Fetches user data from the API and updates the UI with the retrieved information
+const getUser = () => {
+    const id = getCurrentUserID();
+    axios.get(`${baseUrl}/users/${id}`)
+        .then(res => {
+            const user = res.data.data;
+            // Update user information in the UI
+            document.getElementById("user-name-posts").innerHTML = user.username + ' " posts "';
+
+            document.getElementById("user-email").innerHTML = user.email;
+            document.getElementById("user-name").innerHTML = user.name;
+            document.getElementById("user-image").src = user.profile_image;
+            document.getElementById("user-post-count").innerHTML = user.posts_count;
+            document.getElementById("user-comments-count").innerHTML = user.comments_count;
+        })
+    }
+getUser()
