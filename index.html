@@ -1,279 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui/dist/css/styles.css" />
 
-    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script src="/node_modules/axios/dist/axios.min.js"></script>
+
     <!-- And -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/5e6d16379d.js" crossorigin="anonymous"></script>
 
-    <title>Simple Social media</title>
-</head>
+    <style>
+        /* Define transition for the alert */
+        .alert {
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0; /* Initially hidden */
+        }
+    
+        /* Show the alert when it becomes visible */
+        .alert.show {
+            opacity: 1;
+        }
+    </style>
 
+    <title>Document</title>
+</head>
 <body>
 
-    
     <div class="fixed z-50 w-96 top-24 right-10 " id="show-alert"> </div>
-
-    <input class="modal-state" id="modal-3" type="checkbox" />
-    <div class="modal">
-        <label class="modal-overlay" for="modal-3"></label>
-        <div class="modal-content flex flex-col gap-5">
-            <label for="modal-3" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-            <span class="mt-5" >Are you sure you want to delete the post? 
-            <span id="delete-post-title"></span>
-            </span>
-            <input type="hidden" id="delete-post-id-input" value="">
-            <div class="flex gap-3">
-                <button class="btn btn-error btn-block" onclick="confirmPostDelete()">Yes Delete</button>
-                <label for="modal-3" class="btn btn-block">Cancel</label>
+    
+    <section class="relative flex flex-wrap lg:h-screen lg:items-center">
+        <div class="mx-auto flex w-full max-w-sm flex-col gap-6">
+            <div class="flex flex-col items-center">
+                <h1 class="text-3xl font-semibold">Sign In</h1>
+                <p class="text-sm">Sign in to access your account</p>
             </div>
-        </div>
-    </div>
-
-    <!-- Start nav bar -->
-    <div class="bg-backgroundSecondary navbar rounded-lg fixed z-50 top-0 ">
-        <div class='container m-auto flex justify-between items-center'>
-            <div class="navbar-start cursor-pointer">
-                <a href="/">
-                    <span class=" text-lg hover:bg-border px-3 py-1.5 rounded-lg">Fake Blog</span>
-                </a>
-            </div>
-            <div class="navbar-end">
-                <div class="flex gap-3 cursor-pointer">
-
-
-                    <div class="flex items-center gap-3">
-
-                        <div onclick="profileClicked()"  class="flex items-center gap-3" id="nav-profile-name-image">
-                            <h6 id="nav_user_name"></h6>
-                            <img id="nav-profile-image" src="" class="rounded-full w-12 h-12 mr-4 border"
-                                alt="avatar" />
-                        </div>
-
-                        <div id="logout-div">
-                            <button onclick="logOut()" type="button" class="btn btn-outline-error">Logout</button>
-                        </div>
-
-                        <div class='flex items-center gap-3' id="auth-div">
-                            <a href="/pages/login.html" class="btn btn-outline-primary">Login</a>
-                            <a href="/pages/register.html"
-                                class="border-2 border-zinc-600 py-1.5 px-3  rounded-xl hover:bg-border">Register</a>
-                        </div>
+            <div class="form-group">
+                <div class="form-field">
+                    <label class="form-label">User name</label>
+                    <input 
+                        id="username-input"
+                        placeholder="Type here" 
+                        type="text" 
+                        class="input max-w-full" />
+                </div>
+                <div class="form-field mt-3">
+                    <label class="form-label">Password</label>
+                    <div class="form-control">
+                        <input 
+                            id="password-input"
+                            placeholder="Type here" 
+                            type="password" 
+                            class="input max-w-full" />
                     </div>
-
-
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- End nav bar -->
-
-    <!-- Start home page -->
-
-    <div class=' container m-auto flex justify-center gap-5 relative mt-24  '>
-
-        <!--Start left side-bar -->
-        <div class=''>
-            <div class='bg-backgroundSecondary  rounded-lg shadow-lg  w-64 ' id="left-side-bar">
-                <!-- <div class='rounded-t-lg bg-border h-28 relative'>
-                    <img src="https://via.placeholder.com/50" alt="Profile Picture"
-                        class="absolute left-24 top-20 rounded-full w-16 h-16 p-1 bg-zinc-200" />
-                </div>
-                <h6 class='capitalize text-md text-center mt-10 font-light'>ahmed samir</h6>
-                <h6 class='text-md text-center mt-1.5 font-thin '>ahmed14401@gmail.com</h6>
-                <div class='flex flex-col capitalize items-center mt-3 border-t border-gray-500 pt-2 text-md'>
-                    posts
-                    <span class='text-sm  font-light'>50</span>
-                </div>
-                <div class='flex flex-col capitalize items-center mt-3  border-t border-gray-500 pt-2 text-md'>
-                    comments
-                    <span class='text-sm font-light'>50</span>
-                </div>
-                <div
-                    class='capitalize text-center my-3 text-blue-600 border-t border-gray-500 py-3 text-sm cursor-pointer'>
-                    <a href="/pages/profilePosts.html"> view profile </a>
-
-                </div> -->
-            </div>
-
-            <div class='bg-backgroundSecondary rounded-lg shadow-lg  w-64 h-64 text-center pt-16  mt-5'>
-                <div class='px-2.5 tracking-wide leading-loose'>CREATE YOUR OWN FAVOURIT PAGE ....</div>
-                <div class='border mt-7 mx-auto w-32 py-2 rounded-lg text-center bg-border '>Start Now !</div>
-            </div>
-        </div>
-        <!--End left side-bar -->
-
-
-        <!-- Start center items -->
-        <div class=''>
-
-            <div class="bg-backgroundSecondary mb-4 rounded-lg">
-                
-                <input class="modal-state" id="modal-1" type="checkbox" />
-                <div class="modal">
-                    <label class="modal-overlay" for="modal-1"></label>
-
-                    <div class="modal-content flex flex-col gap-5 w-11/12">
-                        <label for="modal-1" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-                        <h2 class="text-xl capitalize"  id="post-model-title">create a new post</h2>
-                        <div class='flex flex-col gap-4'>
-                            <input id="post-title-input" class="input max-w-full" placeholder="The Title!" />
-                            <input type="hidden" id="post-id-input" value="">
-                            <textarea id="post-body-input" class="textarea max-w-full" placeholder="Welcome!"> </textarea></>
-                            <input id="post-image-input" type="file" class=" max-w-full input-file" />
-                        </div>
-                        <div class="flex gap-3">
-                            <button
-                                id="post-modal-submit-btn"
-                                onclick="createNewPostClicked()" 
-                                class="btn btn-primary btn-block">Add Post</button>
-                            <label class="btn btn-block"  for="modal-1">Cancel</label>
-                        </div>
+                <div class="form-field pt-5">
+                    <div class="form-control justify-between">
+                        <button 
+                            onclick="loginBtnClicked()"
+                            type="button" 
+                            class="btn btn-primary w-full">
+                            Sign in
+                        </button>
                     </div>
-
                 </div>
-
-                <div class="rounded-lg shadow-lg py-6 px-8 mb-2 max-w-xl w-full">
-                    <div class="flex items-center">
-                        <img   onclick="profileClicked()" id="image-add-post" src="" alt="Profile Picture"
-                            class="rounded-full w-12 h-12 mr-4 cursor-pointer" />
-                        <label class='bg-border w-full py-3 pl-5 rounded-3xl cursor-pointer' for="modal-1">
-                            <h6 class=''>Start a post .....</h6>
-                        </label>
+                <div class="form-field my-2">
+                    <div class="form-control justify-center">
+                        <a href="/pages/register.html" class="link link-underline-hover link-primary text-sm">Don't have an account yet? Sign up.</a>
                     </div>
                 </div>
             </div>
-
-            <div>
-                <input class="modal-state" id="modal-2" type="checkbox" />
-                <div class="modal">
-                    <label class="modal-overlay" for="modal-2"></label>
-                    <div id="post-modal-details"  class="modal-content flex flex-col gap-5 w-11/12 ">
-                        <div  class=" rounded-lg shadow-lg max-w-xl w-full p-5">
-                            <!-- Post Header -->
-                            <div class="flex items-center">
-                                <img src="https://via.placeholder.com/50" alt="Profile Picture"
-                                    class="rounded-full w-12 h-12 mr-4" />
-                                <div class=''>
-                                    <h2 class="font-semibold text-lg ">John Doe</h2>
-                                    <p class="text-gray-600">March 26 at 10:00 AM</p>
-                                </div>
-                            </div>
-                            <!-- Post Content -->
-                            <p class="text-sm mt-4">
-                                Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of
-                                coffee ☕️ Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee ☕️
-                            </p>
-                            <!-- Post Image -->
-                            <img src="https://via.placeholder.com/500" alt="Coffee" class="mt-4 rounded-lg" />
-                            <!-- Post Actions -->
-                            <div class="flex flex-col items-start mt-5 border-y border-zinc-400 pt-1 pb-2">
-                                <!-- You can add like, comment, and share buttons here -->
-                                <span class='pt-2 '> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span
-                                        class='text-gray-600'>(5) comments</span> </span>
-                            </div>
-
-                            <div class=''>
-                                <div class=' border-b-2 border-zinc-400 py-5'>
-                                    <div class="flex items-center">
-                                        <img src="https://via.placeholder.com/50" alt="Profile Picture"
-                                            class="rounded-full w-10 h-10 mr-4" />
-                                        <div class=''>
-                                            <h2 class="font-semibold text-lg ">John Doe</h2>
-                                        </div>
-                                    </div>
-                                    <!-- Post Content -->
-                                    <p class="text-sm mt-2">
-                                        Just enjoying a cup of coffee ☕️ Just enjoying a cup of coffee
-                                    </p>
-                                </div>
-                            </div>
-                            <div class='flex items-center justify-between gap-5  mt-5'>
-                                <input
-                                    class="w-full outline-none py-1.5 rounded-lg pl-5 bg-first-color border-2 border-zinc-500 placeholder:text-zinc-500 "
-                                    placeholder="Add your comment" />
-                                <button class='btn-primary py-2 px-3 rounded-lg'>Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="posts" class="flex flex-col gap-4">
-
-                    <!-- <div class=" rounded-lg shadow-lg p-8 max-w-xl w-full bg-backgroundSecondary">
-                        <div class="flex items-center">
-                            <a href="/pages/profilePosts.html">
-                                <img src="https://via.placeholder.com/50" alt="Profile Picture"
-                                    class="rounded-full w-12 h-12 mr-4" />
-                            </a>
-                            <div class=''>
-                                <h2 class="font-semibold text-lg ">John Doe</h2>
-                                <p class="text-gray-600">March 26 at 10:00 AM</p>
-                            </div>
-                        </div>
-                        <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <a href="/pages/userPost.html">
-                            <img src="https://via.placeholder.com/500" alt="Coffee" class="mt-4 rounded-lg" />
-                        </a>
-                        <label class="flex items-center mt-4 border-t border-zinc-400 pt-2 cursor-pointer"
-                            for="modal-2">
-                            <span class='pt-2'> <i class="text-zinc-400 fa-regular fa-pen-to-square"></i> <span
-                                    class='text-gray-600'>(5) comments</span> </span>
-                        </label>
-                    </div>
-                    -->
-                </div>
-
-
-            </div>
-
         </div>
-        <!-- End center items -->
-
-
-        <!-- Start right-bar -->
-        <div class=''>
-            <div class=' bg-backgroundSecondary  rounded-lg shadow-lg  w-64 px-3 py-5 ' style="height: 660px;">
-                <div class='flex justify-between items-center border-b-2 border-gray-500 pb-3'>
-                    <h6 class='pl-3'>Suggestions</h6>
-                    <i class="fa-solid fa-ellipsis-vertical pr-3"></i>
-                </div>
-                <div class='pt-5 px-2 flex flex-col gap-4' id="users">
-
-                    <!-- <div>
-                        <a href="/pages/profilePosts.html" class="flex items-center justify-between cursor-pointer">
-                            <div class="flex items-center">
-                                <img src="https://via.placeholder.com/50" alt="Profile Picture"
-                                    class="rounded-full w-12 h-12 mr-4" />
-                                <h6>username</h6>
-                            </div>
-                            <div class="item"><i class="fa-solid fa-angles-right text-sm"></i></div>
-                        </a>
-                    </div> -->
-
-                </div>
-            </div>
+        <div class="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
+            <img
+                alt=""
+                src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                class="absolute inset-0 h-full w-full object-cover"
+            />
         </div>
-        <!-- End right-bar -->
+    </section>
 
-
-    </div>
-
-    <!-- End home page -->
-    <script src="/javascript/getProfileUser.js"></script>
-    <script src="/javascript/postDetails.js"></script>
-    <script src="/javascript/userHandelPosts.js"></script>
-    <script src="/javascript//auth.js"></script>
     <script src="/javascript/mainLogic.js"></script>
-    <script src="/javascript/homePage.js"></script>
+    <script src="/javascript/auth.js"></script>
+
 
 </body>
-
 </html>
